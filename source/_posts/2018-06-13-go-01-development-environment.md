@@ -3,7 +3,7 @@ layout: post
 title: Golang tutorial series - 1.介绍与安装
 date:  2018-06-13 08:40:00
 categories: Golang
-tag: Go
+tag: Golang
 description: Go亦称为Golang ，是由谷歌开发的一个开源的编译型的静态语言。
 ---
 
@@ -49,23 +49,22 @@ git clone https://github.com/golang/text.git
 环境变量:
 Name | Value 
 - | -
-GOBIN   | F:\Go\bin
-GOPATH  | F:\GoLib; F:\workspace
-GOROOT  | F:\Go
-GOOS    | F:\windows
-GOARCH  | amd64
+GOBIN   | D:\workspace\Go\bin
+GOPATH  | D:\workspace\GoLib; D:\workspace\GoProgram
+GOROOT  | D:\workspace\Go
 
 # IDE
 
 ## Goland
 
-[http://idea.liyang.io](http://idea.liyang.io "GoLand激活")
-
 [http://idea.congm.in/](http:idea.congm.in/ "GoLand激活")
 
-[http://idea.fantwo.com/](http://idea.fantwo.com// "GoLand激活")
+## 激活
 
-    
+C:\Windows\System32\drivers\etc `有可能被隐藏`
+使用前请将“0.0.0.0 account.jetbrains.com”添加到hosts文件中
+
+
 ## 注册码
 
 ```

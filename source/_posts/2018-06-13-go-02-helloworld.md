@@ -7,9 +7,10 @@ tag: Go
 ---
 
 # 前言
-我个人推荐使用安装了 Go 扩展的 Visual Studio Code 作为 IDE。它具有自动补全、编码规范（Code Styling）以及许多其他的特性。
+我个人推荐使用 Goland 作为 IDE。它具有自动补全、编码规范 以及许多其他的特性。
 
 # 建立 Go 工作区
+
 在编写代码之前，我们首先应该建立 Go 的工作区（Workspace）。
 
 在 Mac 或 Linux 操作系统下，Go 工作区应该设置在 $HOME/go。所以我们要在 $HOME 目录下创建 go 目录。
@@ -44,10 +45,12 @@ func main(){
 
 创建该程序之后，其目录结构如下：
 
+```
 go
   src
     hello
       helloworld.go
+```
 运行 Go 程序
 运行 Go 程序有多种方式，我们下面依次介绍。
 

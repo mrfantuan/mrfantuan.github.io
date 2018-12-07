@@ -35,6 +35,6 @@ descripiton: 迎着全世界的嘲讽占领世界...
 ![image](http://qiniu.etribe.net/18-12-5/33413059.jpg "部落图鉴")
 ![image](http://qiniu.etribe.net/18-12-5/50315053.jpg "部落图鉴")
 
-
-
 ---
+
+[返回](../2018-12-05-cartoon-worldoflanguages/index.html)

@@ -8,9 +8,10 @@ description: Go亦称为Golang ，是由谷歌开发的一个开源的编译型�
 ---
 
 # 前言
-Go 亦称为 Golang（译注：按照 Rob Pike 说法，语言叫做 Go，Golang 只是官方网站的网址），是由谷歌开发的一个开源的编译型的静态语言。
+Go 亦称为 Golang（语言叫做 Go，Golang 只是官方网站的网址），是由谷歌开发的一个开源的编译型的静态语言。
 
-Golang 的主要关注点是使得高可用性和可扩展性的 Web 应用的开发变得简便容易。（译注：Go 的定位是系统编程语言，只是对 Web 开发支持较好）
+Golang 的定位是系统编程语言，只是对 Web 开发支持较好。
+
 
 以下是我使用 Go 语言时发现的一些优点：
 
@@ -29,9 +30,9 @@ Golang 是一种编译型语言。源代码会编译为二进制机器码。而�
 
 # 安装
 
-[Golang中文网](https://studygolang.com/ "Golang中文网") 
+>Golang中文网: https://studygolang.com/
 
-[Golang下载](https://studygolang.com/dl "Golang下载")
+>Golang下载: https://studygolang.com/dl
 
 基本库安装完之后，编码过程中如果有依赖会遇到未找到 `golang.org/x `下的包
 
@@ -52,6 +53,8 @@ Name | Value
 GOBIN   | D:\workspace\Go\bin
 GOPATH  | D:\workspace\GoLib; D:\workspace\GoProgram
 GOROOT  | D:\workspace\Go
+
+此处根据本地路径修改，GOPATH下GoLib是个人喜好命名，所有项目公用库保存在这里。
 
 # IDE
 

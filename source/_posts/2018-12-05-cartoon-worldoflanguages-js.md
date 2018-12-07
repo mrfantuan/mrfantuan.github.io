@@ -49,7 +49,6 @@ descripiton: 你可以赞扬批评嘲讽它，但却无法忽略！
 ![image](http://qiniu.etribe.net/18-12-5/38785495.jpg "部落图鉴")
 ![image](http://qiniu.etribe.net/18-12-5/35842630.jpg "部落图鉴")
 
-
-
-
 ---
+
+[返回](../2018-12-05-cartoon-worldoflanguages/index.html)

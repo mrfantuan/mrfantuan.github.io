@@ -57,5 +57,7 @@ descripiton: 爹好还这么努力？
 ![image](http://qiniu.etribe.net/18-12-5/66431768.jpg "部落图鉴")
 ![image](http://qiniu.etribe.net/18-12-5/3353637.jpg "部落图鉴")
 
-
 ---
+
+
+[返回](../2018-12-05-cartoon-worldoflanguages/index.html)

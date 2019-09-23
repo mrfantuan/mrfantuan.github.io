@@ -1,0 +1,1021 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=6.5.0" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.5.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.5.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.5.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.5.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '6.5.0',
+    sidebar: {"position":"left","display":"always","offset":12,"b2t":false,"scrollpercent":true,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":true,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="什么是 defer？defer 语句的用途是：含有 defer 语句的函数，会在该函数将要返回之前，调用另一个函数。这个定义可能看起来很复杂，我们通过一个示例就很容易明白了。 示例1234567891011121314151617181920212223242526package mainimport (  	&quot;fmt&quot;)func finished() &amp;#123;  	fmt.Println(&quot;">
+<meta name="keywords" content="Go">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Golang tutorial series - 29.Defer">
+<meta property="og:url" content="http://yoursite.com/2018/06/13/2018-06-13-go-29-defer/index.html">
+<meta property="og:site_name" content="Etribe">
+<meta property="og:description" content="什么是 defer？defer 语句的用途是：含有 defer 语句的函数，会在该函数将要返回之前，调用另一个函数。这个定义可能看起来很复杂，我们通过一个示例就很容易明白了。 示例1234567891011121314151617181920212223242526package mainimport (  	&quot;fmt&quot;)func finished() &amp;#123;  	fmt.Println(&quot;">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-09-23T03:22:39.370Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Golang tutorial series - 29.Defer">
+<meta name="twitter:description" content="什么是 defer？defer 语句的用途是：含有 defer 语句的函数，会在该函数将要返回之前，调用另一个函数。这个定义可能看起来很复杂，我们通过一个示例就很容易明白了。 示例1234567891011121314151617181920212223242526package mainimport (  	&quot;fmt&quot;)func finished() &amp;#123;  	fmt.Println(&quot;">
+
+
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/06/13/2018-06-13-go-29-defer/">
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>Golang tutorial series - 29.Defer | Etribe</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Etribe</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">起猛了，还是没睡醒</p>
+      
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+
+    
+
+    <a href="/" rel="section">首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+
+    
+
+    <a href="/about/" rel="section">关于</a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+  
+  
+  
+  
+
+  
+
+    <a href="https://github.com/mrfantuan" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewbox="0 0 250 250" style="fill: #222; color: #fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"/><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"/><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"/></svg></a>
+
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/13/2018-06-13-go-29-defer/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="讨人厌的团子蜀">
+      <meta itemprop="description" content="构成生命的主要成分，并非事实和事件，而是思想。">
+      <meta itemprop="image" content="/images/header.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Etribe">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Golang tutorial series - 29.Defer
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-06-13 17:40:00" itemprop="dateCreated datePublished" datetime="2018-06-13T17:40:00+08:00">2018-06-13</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-09-23 11:22:39" itemprop="dateModified" datetime="2019-09-23T11:22:39+08:00">2019-09-23</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Golang/" itemprop="url" rel="index"><span itemprop="name">Golang</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="post-meta-item-icon">
+            <i class="fa fa-eye"></i>
+             阅读次数： 
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="什么是-defer？"><a href="#什么是-defer？" class="headerlink" title="什么是 defer？"></a>什么是 defer？</h2><p><code>defer</code> 语句的用途是：含有 <code>defer</code> 语句的函数，会在该函数将要返回之前，调用另一个函数。这个定义可能看起来很复杂，我们通过一个示例就很容易明白了。</p>
+<h2 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h2><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (  </span><br><span class="line">	<span class="string">"fmt"</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">finished</span><span class="params">()</span></span> &#123;  </span><br><span class="line">	fmt.Println(<span class="string">"Finished finding largest"</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">largest</span><span class="params">(nums []<span class="keyword">int</span>)</span></span> &#123;  </span><br><span class="line">	<span class="keyword">defer</span> finished()</span><br><span class="line">	fmt.Println(<span class="string">"Started finding largest"</span>)</span><br><span class="line">	max := nums[<span class="number">0</span>]</span><br><span class="line">	<span class="keyword">for</span> _, v := <span class="keyword">range</span> nums &#123;</span><br><span class="line">		<span class="keyword">if</span> v &lt; max &#123;</span><br><span class="line">			max = v</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	fmt.Println(<span class="string">"Largest number in"</span>, nums, <span class="string">"is"</span>, max)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;  </span><br><span class="line">	nums := []<span class="keyword">int</span>&#123;<span class="number">78</span>, <span class="number">109</span>, <span class="number">2</span>, <span class="number">563</span>, <span class="number">300</span>&#125;</span><br><span class="line">	largest(nums)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><a href="https://play.golang.org/p/IlccOsuSUE" target="_blank" rel="noopener">在 playground 上运行</a></p>
+<p>上面的程序很简单，就是找出一个给定切片的最大值。<code>largest</code> 函数接收一个 int 类型的<a href="../go-11-arrary-slice">切片</a>作为参数，然后打印出该切片中的最大值。<code>largest</code> 函数的第一行的语句为 <code>defer finished()</code>。这表示在 <code>finished()</code> 函数将要返回之前，会调用 <code>finished()</code> 函数。运行该程序，你会看到有如下输出：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Started finding largest  </span><br><span class="line">Largest number in [78 109 2 563 300] is 563  </span><br><span class="line">Finished finding largest</span><br></pre></td></tr></table></figure>
+<p><code>largest</code> 函数开始执行后，会打印上面的两行输出。而就在 <code>largest</code> 将要返回的时候，又调用了我们的延迟函数（Deferred Function），打印出 <code>Finished finding largest</code> 的文本。:)</p>
+<h2 id="延迟方法"><a href="#延迟方法" class="headerlink" title="延迟方法"></a>延迟方法</h2><p><code>defer</code> 不仅限于<a href="../go-6-function">函数</a>的调用，调用<a href="../go-18-interface1">方法</a>也是合法的。我们写一个小程序来测试吧。</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (  </span><br><span class="line">	<span class="string">"fmt"</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> person <span class="keyword">struct</span> &#123;  </span><br><span class="line">	firstName <span class="keyword">string</span></span><br><span class="line">	lastName <span class="keyword">string</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(p person)</span> <span class="title">fullName</span><span class="params">()</span></span> &#123;  </span><br><span class="line">	fmt.Printf(<span class="string">"%s %s"</span>,p.firstName,p.lastName)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;  </span><br><span class="line">	p := person &#123;</span><br><span class="line">		firstName: <span class="string">"John"</span>,</span><br><span class="line">		lastName: <span class="string">"Smith"</span>,</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">defer</span> p.fullName()</span><br><span class="line">	fmt.Printf(<span class="string">"Welcome "</span>)  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><a href="https://play.golang.org/p/lZ74OAwnRD" target="_blank" rel="noopener">在 playground 上运行</a></p>
+<p>在上面的例子中，我们在第 22 行延迟了一个方法调用。而其他的代码很直观，这里不再解释。该程序输出：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Welcome John Smith</span><br></pre></td></tr></table></figure>
+<h2 id="实参取值（Arguments-Evaluation）"><a href="#实参取值（Arguments-Evaluation）" class="headerlink" title="实参取值（Arguments Evaluation）"></a>实参取值（Arguments Evaluation）</h2><p>在 Go 语言中，并非在调用延迟函数的时候才确定实参，而是当执行 <code>defer</code> 语句的时候，就会对延迟函数的实参进行求值。</p>
+<p>通过一个例子就能够理解了。</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (  </span><br><span class="line">	<span class="string">"fmt"</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">printA</span><span class="params">(a <span class="keyword">int</span>)</span></span> &#123;  </span><br><span class="line">	fmt.Println(<span class="string">"value of a in deferred function"</span>, a)</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;  </span><br><span class="line">	a := <span class="number">5</span></span><br><span class="line">	<span class="keyword">defer</span> printA(a)</span><br><span class="line">	a = <span class="number">10</span></span><br><span class="line">	fmt.Println(<span class="string">"value of a before deferred function call"</span>, a)</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><a href="https://play.golang.org/p/sBnwrUgObd" target="_blank" rel="noopener">在 playground 上运行</a></p>
+<p>在上面的程序里的第 11 行，<code>a</code> 的初始值为 5。在第 12 行执行 <code>defer</code> 语句的时候，由于 <code>a</code> 等于 5，因此延迟函数 <code>printA</code> 的实参也等于 5。接着我们在第 13 行将 <code>a</code> 的值修改为 10。下一行会打印出 <code>a</code> 的值。该程序输出：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">value of a before deferred function call 10  </span><br><span class="line">value of a in deferred function 5</span><br></pre></td></tr></table></figure>
+<p>从上面的输出，我们可以看出，在调用了 <code>defer</code> 语句后，虽然我们将 <code>a</code> 修改为 10，但调用延迟函数 <code>printA(a)</code>后，仍然打印的是 5。</p>
+<h2 id="defer-栈"><a href="#defer-栈" class="headerlink" title="defer 栈"></a>defer 栈</h2><p>当一个函数内多次调用 <code>defer</code> 时，Go 会把 <code>defer</code> 调用放入到一个栈中，随后按照后进先出（Last In First Out, LIFO）的顺序执行。</p>
+<p>我们下面编写一个小程序，使用 <code>defer</code> 栈，将一个字符串逆序打印。</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (  </span><br><span class="line">	<span class="string">"fmt"</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;  </span><br><span class="line">	name := <span class="string">"Naveen"</span></span><br><span class="line">	fmt.Printf(<span class="string">"Orignal String: %s\n"</span>, <span class="keyword">string</span>(name))</span><br><span class="line">	fmt.Printf(<span class="string">"Reversed String: "</span>)</span><br><span class="line">	<span class="keyword">for</span> _, v := <span class="keyword">range</span> []<span class="keyword">rune</span>(name) &#123;</span><br><span class="line">		<span class="keyword">defer</span> fmt.Printf(<span class="string">"%c"</span>, v)</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><a href="https://play.golang.org/p/HDk623ozuw" target="_blank" rel="noopener">在 playground 上运行</a></p>
+<p>在上述程序中的第 11 行，<code>for range</code> 循环会遍历一个字符串，并在第 12 行调用了 <code>defer fmt.Printf(&quot;%c&quot;, v)</code>。这些延迟调用会添加到一个栈中，按照后进先出的顺序执行，因此，该字符串会逆序打印出来。该程序会输出：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Orignal String: Naveen  </span><br><span class="line">Reversed String: neevaN</span><br></pre></td></tr></table></figure>
+<h2 id="defer-的实际应用"><a href="#defer-的实际应用" class="headerlink" title="defer 的实际应用"></a>defer 的实际应用</h2><p>目前为止，我们看到的代码示例，都没有体现出 <code>defer</code> 的实际用途。本节我们会看看 <code>defer</code> 的实际应用。</p>
+<p>当一个函数应该在与当前代码流（Code Flow）无关的环境下调用时，可以使用 <code>defer</code>。我们通过一个用到了 <a href="../go-23-buffer-channel"><code>WaitGroup</code></a> 代码示例来理解这句话的含义。我们首先会写一个没有使用 <code>defer</code> 的程序，然后我们会用 <code>defer</code> 来修改，看到 <code>defer</code> 带来的好处。</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (  </span><br><span class="line">	<span class="string">"fmt"</span></span><br><span class="line">	<span class="string">"sync"</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> rect <span class="keyword">struct</span> &#123;  </span><br><span class="line">	length <span class="keyword">int</span></span><br><span class="line">	width  <span class="keyword">int</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(r rect)</span> <span class="title">area</span><span class="params">(wg *sync.WaitGroup)</span></span> &#123;  </span><br><span class="line">	<span class="keyword">if</span> r.length &amp;lt; <span class="number">0</span> &#123;</span><br><span class="line">		fmt.Printf(<span class="string">"rect %v's length should be greater than zero\n"</span>, r)</span><br><span class="line">		wg.Done()</span><br><span class="line">		<span class="keyword">return</span></span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span> r.width &amp;lt; <span class="number">0</span> &#123;</span><br><span class="line">		fmt.Printf(<span class="string">"rect %v's width should be greater than zero\n"</span>, r)</span><br><span class="line">		wg.Done()</span><br><span class="line">		<span class="keyword">return</span></span><br><span class="line">	&#125;</span><br><span class="line">	area := r.length * r.width</span><br><span class="line">	fmt.Printf(<span class="string">"rect %v's area %d\n"</span>, r, area)</span><br><span class="line">	wg.Done()</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;  </span><br><span class="line">	<span class="keyword">var</span> wg sync.WaitGroup</span><br><span class="line">	r1 := rect&#123;<span class="number">-67</span>, <span class="number">89</span>&#125;</span><br><span class="line">	r2 := rect&#123;<span class="number">5</span>, <span class="number">-67</span>&#125;</span><br><span class="line">	r3 := rect&#123;<span class="number">8</span>, <span class="number">9</span>&#125;</span><br><span class="line">	rects := []rect&#123;r1, r2, r3&#125;</span><br><span class="line">	<span class="keyword">for</span> _, v := <span class="keyword">range</span> rects &#123;</span><br><span class="line">		wg.Add(<span class="number">1</span>)</span><br><span class="line">		<span class="keyword">go</span> v.area(&amp;wg)</span><br><span class="line">	&#125;</span><br><span class="line">	wg.Wait()</span><br><span class="line">	fmt.Println(<span class="string">"All go routines finished executing"</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><a href="https://play.golang.org/p/kXL85U0Dd_" target="_blank" rel="noopener">在 playground 上运行</a></p>
+<p>在上面的程序里，我们在第 8 行创建了 <code>rect</code> 结构体，并在第 13 行创建了 <code>rect</code> 的方法 <code>area</code>，计算出矩形的面积。<code>area</code> 检查了矩形的长宽是否小于零。如果矩形的长宽小于零，它会打印出对应的提示信息，而如果大于零，它会打印出矩形的面积。</p>
+<p><code>main</code> 函数创建了 3 个 <code>rect</code> 类型的变量：<code>r1</code>、<code>r2</code> 和 <code>r3</code>。在第 34 行，我们把这 3 个变量添加到了 <code>rects</code> 切片里。该切片接着使用 <code>for range</code> 循环遍历，把 <code>area</code> 方法作为一个并发的 Go 协程进行调用（第 37 行）。我们用 <code>WaitGroup wg</code> 来确保 <code>main</code> 函数在其他协程执行完毕之后，才会结束执行。<code>WaitGroup</code> 作为参数传递给 <code>area</code> 方法后，在第 16 行、第 21 行和第 26 行通知 <code>main</code> 函数，表示现在协程已经完成所有任务。<strong>如果你仔细观察，会发现 <code>wg.Done()</code> 只在 <code>area</code> 函数返回的时候才会调用。<code>wg.Done()</code> 应该在 <code>area</code> 将要返回之前调用，并且与代码流的路径（Path）无关，因此我们可以只调用一次 <code>defer</code>，来有效地替换掉 <code>wg.Done()</code> 的多次调用</strong>。</p>
+<p>我们来用 <code>defer</code> 来重写上面的代码。</p>
+<p>在下面的代码中，我们移除了原先程序中的 3 个 <code>wg.Done</code> 的调用，而是用一个单独的 <code>defer wg.Done()</code> 来取代它（第 14 行）。这使得我们的代码更加简洁易懂。</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (  </span><br><span class="line">	<span class="string">"fmt"</span></span><br><span class="line">	<span class="string">"sync"</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> rect <span class="keyword">struct</span> &#123;  </span><br><span class="line">	length <span class="keyword">int</span></span><br><span class="line">	width  <span class="keyword">int</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(r rect)</span> <span class="title">area</span><span class="params">(wg *sync.WaitGroup)</span></span> &#123;  </span><br><span class="line">	<span class="keyword">defer</span> wg.Done()</span><br><span class="line">	<span class="keyword">if</span> r.length &amp;lt; <span class="number">0</span> &#123;</span><br><span class="line">		fmt.Printf(<span class="string">"rect %v's length should be greater than zero\n"</span>, r)</span><br><span class="line">		<span class="keyword">return</span></span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span> r.width &amp;lt; <span class="number">0</span> &#123;</span><br><span class="line">		fmt.Printf(<span class="string">"rect %v's width should be greater than zero\n"</span>, r)</span><br><span class="line">		<span class="keyword">return</span></span><br><span class="line">	&#125;</span><br><span class="line">	area := r.length * r.width</span><br><span class="line">	fmt.Printf(<span class="string">"rect %v's area %d\n"</span>, r, area)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;  </span><br><span class="line">	<span class="keyword">var</span> wg sync.WaitGroup</span><br><span class="line">	r1 := rect&#123;<span class="number">-67</span>, <span class="number">89</span>&#125;</span><br><span class="line">	r2 := rect&#123;<span class="number">5</span>, <span class="number">-67</span>&#125;</span><br><span class="line">	r3 := rect&#123;<span class="number">8</span>, <span class="number">9</span>&#125;</span><br><span class="line">	rects := []rect&#123;r1, r2, r3&#125;</span><br><span class="line">	<span class="keyword">for</span> _, v := <span class="keyword">range</span> rects &#123;</span><br><span class="line">		wg.Add(<span class="number">1</span>)</span><br><span class="line">		<span class="keyword">go</span> v.area(&amp;wg)</span><br><span class="line">	&#125;</span><br><span class="line">	wg.Wait()</span><br><span class="line">	fmt.Println(<span class="string">"All go routines finished executing"</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><a href="https://play.golang.org/p/JuUvytLfBv" target="_blank" rel="noopener">在 playground 上运行</a></p>
+<p>该程序会输出：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">rect &#123;8 9&#125;&apos;s area 72  </span><br><span class="line">rect &#123;-67 89&#125;&apos;s length should be greater than zero  </span><br><span class="line">rect &#123;5 -67&#125;&apos;s width should be greater than zero  </span><br><span class="line">All go routines finished executing</span><br></pre></td></tr></table></figure>
+<p>在上面的程序中，使用 <code>defer</code> 还有一个好处。假设我们使用 <code>if</code> 条件语句，又给 <code>area</code> 方法添加了一条返回路径（Return Path）。如果没有使用 <code>defer</code> 来调用 <code>wg.Done()</code>，我们就得很小心了，确保在这条新添的返回路径里调用了 <code>wg.Done()</code>。由于现在我们延迟调用了 <code>wg.Done()</code>，因此无需再为这条新的返回路径添加 <code>wg.Done()</code> 了。</p>
+<p>本教程到此结束。祝你愉快。</p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+       
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Go/" rel="tag"><i class="fa fa-tag"></i> Go</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/06/13/2018-06-13-go-28-polymorphic/" rel="next" title="Golang tutorial series - 28.多态">
+                <i class="fa fa-chevron-left"></i> Golang tutorial series - 28.多态
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/06/13/2018-06-13-go-30-error/" rel="prev" title="Golang tutorial series - 30.错误处理">
+                Golang tutorial series - 30.错误处理 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/header.jpg" alt="讨人厌的团子蜀">
+            
+              <p class="site-author-name" itemprop="name">讨人厌的团子蜀</p>
+              <p class="site-description motion-element" itemprop="description">构成生命的主要成分，并非事实和事件，而是思想。</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives">
+                
+                    <span class="site-state-item-count">57</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">12</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">14</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/mrfantuan" title="GitHub &rarr; https://github.com/mrfantuan" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i></a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                  
+                    
+                  
+                  <a href="mailto:mrfantuan@hotmail.com" title="E-Mail &rarr; mailto:mrfantuan@hotmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i></a>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#什么是-defer？"><span class="nav-number">1.</span> <span class="nav-text">什么是 defer？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#示例"><span class="nav-number">2.</span> <span class="nav-text">示例</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#延迟方法"><span class="nav-number">3.</span> <span class="nav-text">延迟方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实参取值（Arguments-Evaluation）"><span class="nav-number">4.</span> <span class="nav-text">实参取值（Arguments Evaluation）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#defer-栈"><span class="nav-number">5.</span> <span class="nav-text">defer 栈</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#defer-的实际应用"><span class="nav-number">6.</span> <span class="nav-text">defer 的实际应用</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2015 – <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">讨人厌的团子蜀</span>
+
+  
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+
+  
+    <span class="site-pv" title="总访问量">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+    </span>
+  
+</div>
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//tajs.qq.com/stats?sId=66125392";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+	
+    
+
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+    
+      
+  
+  <script type="text/javascript" color="95,158,160" opacity="0.5" zindex="-1" count="99" src="/lib/canvas-nest/canvas-nest-nomobile.min.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.5.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.5.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=6.5.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=6.5.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.5.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.5.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.5.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+  
+  <script src="/lib/pangu/dist/pangu.min.js?v=3.3"></script>
+  <script type="text/javascript">pangu.spacingPage();</script>
+
+
+  
+
+  
+
+  
+
+  
+  <style>
+    .copy-btn {
+      display: inline-block;
+      padding: 6px 12px;
+      font-size: 13px;
+      font-weight: 700;
+      line-height: 20px;
+      color: #333;
+      white-space: nowrap;
+      vertical-align: middle;
+      cursor: pointer;
+      background-color: #eee;
+      background-image: linear-gradient(#fcfcfc, #eee);
+      border: 1px solid #d5d5d5;
+      border-radius: 3px;
+      user-select: none;
+      outline: 0;
+    }
+
+    .highlight-wrap .copy-btn {
+      transition: opacity .3s ease-in-out;
+      opacity: 0;
+      padding: 2px 6px;
+      position: absolute;
+      right: 4px;
+      top: 8px;
+    }
+
+    .highlight-wrap:hover .copy-btn,
+    .highlight-wrap .copy-btn:focus {
+      opacity: 1
+    }
+
+    .highlight-wrap {
+      position: relative;
+    }
+  </style>
+  <script>
+    $('.highlight').each(function (i, e) {
+      var $wrap = $('<div>').addClass('highlight-wrap')
+      $(e).after($wrap)
+      $wrap.append($('<button>').addClass('copy-btn').append('复制').on('click', function (e) {
+        var code = $(this).parent().find('.code').find('.line').map(function (i, e) {
+          return $(e).text()
+        }).toArray().join('\n')
+        var ta = document.createElement('textarea')
+        document.body.appendChild(ta)
+        ta.style.position = 'absolute'
+        ta.style.top = '0px'
+        ta.style.left = '0px'
+        ta.value = code
+        ta.select()
+        ta.focus()
+        var result = document.execCommand('copy')
+        document.body.removeChild(ta)
+        
+          if(result)$(this).text('复制成功')
+          else $(this).text('复制失败')
+        
+        $(this).blur()
+      })).on('mouseleave', function (e) {
+        var $b = $(this).find('.copy-btn')
+        setTimeout(function () {
+          $b.text('复制')
+        }, 300)
+      }).append(e)
+    })
+  </script>
+
+
+  
+
+</body>
+</html>

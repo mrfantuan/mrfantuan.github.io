@@ -1,0 +1,1040 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=6.5.0" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.5.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.5.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.5.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.5.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '6.5.0',
+    sidebar: {"position":"left","display":"always","offset":12,"b2t":false,"scrollpercent":true,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":true,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="由于和其他语言相比，字符串在 Go 语言中有着自己特殊的实现，因此在这里需要被特别提出来。 什么是字符串？Go 语言中的字符串是一个字节切片。把内容放在双引号””之间，我们可以创建一个字符串。让我们来看一个创建并打印字符串的简单示例。 12345678910package mainimport (    &quot;fmt&quot;)func main() &amp;#123;    name := &quot;Hello Worl">
+<meta name="keywords" content="Go">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Golang tutorial series - 14.字符串">
+<meta property="og:url" content="http://yoursite.com/2018/06/13/2018-06-13-go-14-string/index.html">
+<meta property="og:site_name" content="Etribe">
+<meta property="og:description" content="由于和其他语言相比，字符串在 Go 语言中有着自己特殊的实现，因此在这里需要被特别提出来。 什么是字符串？Go 语言中的字符串是一个字节切片。把内容放在双引号””之间，我们可以创建一个字符串。让我们来看一个创建并打印字符串的简单示例。 12345678910package mainimport (    &quot;fmt&quot;)func main() &amp;#123;    name := &quot;Hello Worl">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-09-23T03:22:39.363Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Golang tutorial series - 14.字符串">
+<meta name="twitter:description" content="由于和其他语言相比，字符串在 Go 语言中有着自己特殊的实现，因此在这里需要被特别提出来。 什么是字符串？Go 语言中的字符串是一个字节切片。把内容放在双引号””之间，我们可以创建一个字符串。让我们来看一个创建并打印字符串的简单示例。 12345678910package mainimport (    &quot;fmt&quot;)func main() &amp;#123;    name := &quot;Hello Worl">
+
+
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/06/13/2018-06-13-go-14-string/">
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>Golang tutorial series - 14.字符串 | Etribe</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Etribe</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">起猛了，还是没睡醒</p>
+      
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+
+    
+
+    <a href="/" rel="section">首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+
+    
+
+    <a href="/about/" rel="section">关于</a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+  
+  
+  
+  
+
+  
+
+    <a href="https://github.com/mrfantuan" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewbox="0 0 250 250" style="fill: #222; color: #fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"/><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"/><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"/></svg></a>
+
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/13/2018-06-13-go-14-string/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="讨人厌的团子蜀">
+      <meta itemprop="description" content="构成生命的主要成分，并非事实和事件，而是思想。">
+      <meta itemprop="image" content="/images/header.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Etribe">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Golang tutorial series - 14.字符串
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-06-13 10:50:00" itemprop="dateCreated datePublished" datetime="2018-06-13T10:50:00+08:00">2018-06-13</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-09-23 11:22:39" itemprop="dateModified" datetime="2019-09-23T11:22:39+08:00">2019-09-23</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Golang/" itemprop="url" rel="index"><span itemprop="name">Golang</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="post-meta-item-icon">
+            <i class="fa fa-eye"></i>
+             阅读次数： 
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>由于和其他语言相比，字符串在 Go 语言中有着自己特殊的实现，因此在这里需要被特别提出来。</p>
+<h2 id="什么是字符串？"><a href="#什么是字符串？" class="headerlink" title="什么是字符串？"></a>什么是字符串？</h2><p>Go 语言中的字符串是一个字节切片。把内容放在双引号””之间，我们可以创建一个字符串。让我们来看一个创建并打印字符串的简单示例。</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">    <span class="string">"fmt"</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">    name := <span class="string">"Hello World"</span></span><br><span class="line">    fmt.Println(name)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><a href="https://play.golang.org/p/o9OVDgEMU0" target="_blank" rel="noopener">在线运行程序</a></p>
+<p>上面的程序将会输出 <code>Hello World</code>。</p>
+<p>Go 中的字符串是兼容 Unicode 编码的，并且使用 UTF-8 进行编码。</p>
+<h2 id="单独获取字符串的每一个字节"><a href="#单独获取字符串的每一个字节" class="headerlink" title="单独获取字符串的每一个字节"></a>单独获取字符串的每一个字节</h2><p>由于字符串是一个字节切片，所以我们可以获取字符串的每一个字节。</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">    <span class="string">"fmt"</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">printBytes</span><span class="params">(s <span class="keyword">string</span>)</span></span> &#123;</span><br><span class="line">    <span class="keyword">for</span> i:= <span class="number">0</span>; i &lt; <span class="built_in">len</span>(s); i++ &#123;</span><br><span class="line">        fmt.Printf(<span class="string">"%x "</span>, s[i])</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">    name := <span class="string">"Hello World"</span></span><br><span class="line">    printBytes(name)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><a href="https://play.golang.org/p/XbJO2b0ZDW" target="_blank" rel="noopener">在线运行程序</a></p>
+<p>上面程序的第 8 行，<strong><code>len(s)</code> 返回字符串中字节的数量</strong>，然后我们用了一个 for 循环以 16 进制的形式打印这些字节。<code>%x</code> 格式限定符用于指定 16 进制编码。上面的程序输出 <code>48 65 6c 6c 6f 20 57 6f 72 6c 64</code>。这些打印出来的字符是 “Hello World” 以 <a href="https://mothereff.in/utf-8#Hello%20World" target="_blank" rel="noopener">Unicode UTF-8 编码</a>的结果。为了更好的理解 go 中的字符串，需要对 Unicode 和 UTF-8 有基础的理解。我推荐阅读一下 <a href="https://naveenr.net/unicode-character-set-and-utf-8-utf-16-utf-32-encoding/" target="_blank" rel="noopener">https://naveenr.net/unicode-character-set-and-utf-8-utf-16-utf-32-encoding/</a> 来理解一下什么是 Unicode 和 UTF-8。</p>
+<p>让我们稍微修改一下上面的程序，让它打印字符串的每一个字符。</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">    <span class="string">"fmt"</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">printBytes</span><span class="params">(s <span class="keyword">string</span>)</span></span> &#123;</span><br><span class="line">    <span class="keyword">for</span> i:= <span class="number">0</span>; i &lt; <span class="built_in">len</span>(s); i++ &#123;</span><br><span class="line">        fmt.Printf(<span class="string">"%x "</span>, s[i])</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">printChars</span><span class="params">(s <span class="keyword">string</span>)</span></span> &#123;</span><br><span class="line">    <span class="keyword">for</span> i:= <span class="number">0</span>; i &lt; <span class="built_in">len</span>(s); i++ &#123;</span><br><span class="line">        fmt.Printf(<span class="string">"%c "</span>,s[i])</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">    name := <span class="string">"Hello World"</span></span><br><span class="line">    printBytes(name)</span><br><span class="line">    fmt.Printf(<span class="string">"\n"</span>)</span><br><span class="line">    printChars(name)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><a href="https://play.golang.org/p/Jss0HG1q80" target="_blank" rel="noopener">在线运行程序</a></p>
+<p>在 <code>printChars</code> 方法(第 16 行中)中，<code>%c</code> 格式限定符用于打印字符串的字符。这个程序输出结果是：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">48 65 6c 6c 6f 20 57 6f 72 6c 64  </span><br><span class="line">H e l l o   W o r l d</span><br></pre></td></tr></table></figure>
+<p>上面的程序获取字符串的每一个字符，虽然看起来是合法的，但却有一个严重的 bug。让我拆解这个代码来看看我们做错了什么。</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">    <span class="string">"fmt"</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">printBytes</span><span class="params">(s <span class="keyword">string</span>)</span></span> &#123;</span><br><span class="line">    <span class="keyword">for</span> i:= <span class="number">0</span>; i &lt; <span class="built_in">len</span>(s); i++ &#123;</span><br><span class="line">        fmt.Printf(<span class="string">"%x "</span>, s[i])</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">printChars</span><span class="params">(s <span class="keyword">string</span>)</span></span> &#123;</span><br><span class="line">    <span class="keyword">for</span> i:= <span class="number">0</span>; i &lt; <span class="built_in">len</span>(s); i++ &#123;</span><br><span class="line">        fmt.Printf(<span class="string">"%c "</span>,s[i])</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">    name := <span class="string">"Hello World"</span></span><br><span class="line">    printBytes(name)</span><br><span class="line">    fmt.Printf(<span class="string">"\n"</span>)</span><br><span class="line">    printChars(name)</span><br><span class="line">    fmt.Printf(<span class="string">"\n"</span>)</span><br><span class="line">    name = <span class="string">"Señor"</span></span><br><span class="line">    printBytes(name)</span><br><span class="line">    fmt.Printf(<span class="string">"\n"</span>)</span><br><span class="line">    printChars(name)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><a href="https://play.golang.org/p/UQOVvRVaFH" target="_blank" rel="noopener">在线运行程序</a></p>
+<p>上面代码输出的结果是：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">48 65 6c 6c 6f 20 57 6f 72 6c 64  </span><br><span class="line">H e l l o   W o r l d  </span><br><span class="line">53 65 c3 b1 6f 72  </span><br><span class="line">S e Ã ± o r</span><br></pre></td></tr></table></figure>
+<p>在上面程序的第 28 行，我们尝试输出 <strong>Señor</strong> 的字符，但却输出了错误的 <strong>S e Ã ± o r</strong>。 为什么程序分割 <code>Hello World</code> 时表现完美，但分割 <code>Señor</code> 就出现了错误呢？这是因为 <code>ñ</code> 的 Unicode 代码点（Code Point）是 <code>U+00F1</code>。它的 <a href="https://mothereff.in/utf-8#%C3%B1" target="_blank" rel="noopener">UTF-8 编码</a>占用了 c3 和 b1 两个字节。它的 UTF-8 编码占用了两个字节 c3 和 b1。而我们打印字符时，却假定每个字符的编码只会占用一个字节，这是错误的。在 UTF-8 编码中，一个代码点可能会占用超过一个字节的空间。那么我们该怎么办呢？rune 能帮我们解决这个难题。</p>
+<h2 id="rune"><a href="#rune" class="headerlink" title="rune"></a>rune</h2><p>rune 是 Go 语言的内建类型，它也是 int32 的别称。在 Go 语言中，rune 表示一个代码点。代码点无论占用多少个字节，都可以用一个 rune 来表示。让我们修改一下上面的程序，用 rune 来打印字符。</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">    <span class="string">"fmt"</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">printBytes</span><span class="params">(s <span class="keyword">string</span>)</span></span> &#123;</span><br><span class="line">    <span class="keyword">for</span> i:= <span class="number">0</span>; i &lt; <span class="built_in">len</span>(s); i++ &#123;</span><br><span class="line">        fmt.Printf(<span class="string">"%x "</span>, s[i])</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">printChars</span><span class="params">(s <span class="keyword">string</span>)</span></span> &#123;</span><br><span class="line">    runes := []<span class="keyword">rune</span>(s)</span><br><span class="line">    <span class="keyword">for</span> i:= <span class="number">0</span>; i &lt; <span class="built_in">len</span>(runes); i++ &#123;</span><br><span class="line">        fmt.Printf(<span class="string">"%c "</span>,runes[i])</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">    name := <span class="string">"Hello World"</span></span><br><span class="line">    printBytes(name)</span><br><span class="line">    fmt.Printf(<span class="string">"\n"</span>)</span><br><span class="line">    printChars(name)</span><br><span class="line">    fmt.Printf(<span class="string">"\n\n"</span>)</span><br><span class="line">    name = <span class="string">"Señor"</span></span><br><span class="line">    printBytes(name)</span><br><span class="line">    fmt.Printf(<span class="string">"\n"</span>)</span><br><span class="line">    printChars(name)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><a href="https://play.golang.org/p/t4z-f8I-ih" target="_blank" rel="noopener">在线运行程序</a></p>
+<p>在上面代码的第 14 行，字符串被转化为一个 rune 切片。然后我们循环打印字符。程序的输出结果是</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">48 65 6c 6c 6f 20 57 6f 72 6c 64  </span><br><span class="line">H e l l o   W o r l d </span><br><span class="line"></span><br><span class="line">53 65 c3 b1 6f 72  </span><br><span class="line">S e ñ o r</span><br></pre></td></tr></table></figure>
+<p>上面的输出结果非常完美，就是我们想要的结果:)。</p>
+<h2 id="字符串的-for-range-循环"><a href="#字符串的-for-range-循环" class="headerlink" title="字符串的 for range 循环"></a>字符串的 for range 循环</h2><p>上面的程序是一种遍历字符串的好方法，但是 Go 给我们提供了一种更简单的方法来做到这一点：使用 <strong>for range</strong> 循环。</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">    <span class="string">"fmt"</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">printCharsAndBytes</span><span class="params">(s <span class="keyword">string</span>)</span></span> &#123;</span><br><span class="line">    <span class="keyword">for</span> index, <span class="keyword">rune</span> := <span class="keyword">range</span> s &#123;</span><br><span class="line">        fmt.Printf(<span class="string">"%c starts at byte %d\n"</span>, <span class="keyword">rune</span>, index)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">    name := <span class="string">"Señor"</span></span><br><span class="line">    printCharsAndBytes(name)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><a href="https://play.golang.org/p/BPpQ0dZr8W" target="_blank" rel="noopener">在线运行程序</a></p>
+<p>在上面程序中的第8行，使用 <code>for range</code> 循环遍历了字符串。循环返回的是是当前 rune 的字节位置。程序的输出结果为：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">S starts at byte 0  </span><br><span class="line">e starts at byte 1  </span><br><span class="line">ñ starts at byte 2</span><br><span class="line">o starts at byte 4  </span><br><span class="line">r starts at byte 5</span><br></pre></td></tr></table></figure>
+<p>从上面的输出中可以清晰的看到 <code>ñ</code> 占了两个字节:)。</p>
+<h2 id="用字节切片构造字符串"><a href="#用字节切片构造字符串" class="headerlink" title="用字节切片构造字符串"></a>用字节切片构造字符串</h2><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (  </span><br><span class="line">    <span class="string">"fmt"</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;  </span><br><span class="line">    byteSlice := []<span class="keyword">byte</span>&#123;<span class="number">0x43</span>, <span class="number">0x61</span>, <span class="number">0x66</span>, <span class="number">0xC3</span>, <span class="number">0xA9</span>&#125;</span><br><span class="line">    str := <span class="keyword">string</span>(byteSlice)</span><br><span class="line">    fmt.Println(str)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><a href="https://play.golang.org/p/Vr9pf8X8xO" target="_blank" rel="noopener">在线运行程序</a></p>
+<p>上面的程序中 <code>byteSlice</code> 包含字符串 <code>Café</code> 用 UTF-8 编码后的 16 进制字节。程序输出结果是 <code>Café</code>。</p>
+<p>如果我们把 16 进制换成对应的 10 进制值会怎么样呢？上面的程序还能工作吗？让我们来试一试：</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (  </span><br><span class="line">    <span class="string">"fmt"</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;  </span><br><span class="line">    byteSlice := []<span class="keyword">byte</span>&#123;<span class="number">67</span>, <span class="number">97</span>, <span class="number">102</span>, <span class="number">195</span>, <span class="number">169</span>&#125;<span class="comment">//decimal equivalent of &#123;'\x43', '\x61', '\x66', '\xC3', '\xA9'&#125;</span></span><br><span class="line">    str := <span class="keyword">string</span>(byteSlice)</span><br><span class="line">    fmt.Println(str)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><a href="https://play.golang.org/p/jgsRowW6XN" target="_blank" rel="noopener">在线运行程序</a></p>
+<p>上面程序的输出结果也是<code>Café</code></p>
+<h2 id="用-rune-切片构造字符串"><a href="#用-rune-切片构造字符串" class="headerlink" title="用 rune 切片构造字符串"></a>用 rune 切片构造字符串</h2><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (  </span><br><span class="line">    <span class="string">"fmt"</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;  </span><br><span class="line">    runeSlice := []<span class="keyword">rune</span>&#123;<span class="number">0x0053</span>, <span class="number">0x0065</span>, <span class="number">0x00f</span>1, <span class="number">0x006f</span>, <span class="number">0x0072</span>&#125;</span><br><span class="line">    str := <span class="keyword">string</span>(runeSlice)</span><br><span class="line">    fmt.Println(str)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><a href="https://play.golang.org/p/m8wTMOpYJP" target="_blank" rel="noopener">在线运行程序</a></p>
+<p>在上面的程序中 <code>runeSlice</code> 包含字符串 <code>Señor</code>的 16 进制的 Unicode 代码点。这个程序将会输出<code>Señor</code>。</p>
+<h2 id="字符串的长度"><a href="#字符串的长度" class="headerlink" title="字符串的长度"></a>字符串的长度</h2><p><a href="https://golang.org/pkg/unicode/utf8/#RuneCountInString" target="_blank" rel="noopener">utf8 package</a> 包中的 <code>func RuneCountInString(s string) (n int)</code> 方法用来获取字符串的长度。这个方法传入一个字符串参数然后返回字符串中的 rune 的数量。</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (  </span><br><span class="line">    <span class="string">"fmt"</span></span><br><span class="line">    <span class="string">"unicode/utf8"</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">length</span><span class="params">(s <span class="keyword">string</span>)</span></span> &#123;  </span><br><span class="line">    fmt.Printf(<span class="string">"length of %s is %d\n"</span>, s, utf8.RuneCountInString(s))</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123; </span><br><span class="line">    word1 := <span class="string">"Señor"</span> </span><br><span class="line">    length(word1)</span><br><span class="line">    word2 := <span class="string">"Pets"</span></span><br><span class="line">    length(word2)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><a href="https://play.golang.org/p/QGYlHmF7tn" target="_blank" rel="noopener">在线运行程序</a></p>
+<p>上面程序的输出结果是：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">length of Señor is 5  </span><br><span class="line">length of Pets is 4</span><br></pre></td></tr></table></figure>
+<h2 id="字符串是不可变的"><a href="#字符串是不可变的" class="headerlink" title="字符串是不可变的"></a>字符串是不可变的</h2><p>Go 中的字符串是不可变的。一旦一个字符串被创建，那么它将无法被修改。</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (  </span><br><span class="line">    <span class="string">"fmt"</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">mutate</span><span class="params">(s <span class="keyword">string</span>)</span><span class="title">string</span></span> &#123;  </span><br><span class="line">    s[<span class="number">0</span>] = <span class="string">'a'</span><span class="comment">//any valid unicode character within single quote is a rune </span></span><br><span class="line">    <span class="keyword">return</span> s</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;  </span><br><span class="line">    h := <span class="string">"hello"</span></span><br><span class="line">    fmt.Println(mutate(h))</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><a href="https://play.golang.org/p/bv4SlSd_hp" target="_blank" rel="noopener">在线运行程序</a></p>
+<p>在上面程序中的第 8 行，我们试图把这个字符串中的第一个字符修改为 ‘a’。由于字符串是不可变的，因此这个操作是非法的。所以程序抛出了一个错误 <strong>main.go:8: cannot assign to s[0]</strong>。</p>
+<p>为了修改字符串，可以把字符串转化为一个 rune 切片。然后这个切片可以进行任何想要的改变，然后再转化为一个字符串。</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (  </span><br><span class="line">    <span class="string">"fmt"</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">mutate</span><span class="params">(s []<span class="keyword">rune</span>)</span> <span class="title">string</span></span> &#123;  </span><br><span class="line">    s[<span class="number">0</span>] = <span class="string">'a'</span> </span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">string</span>(s)</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;  </span><br><span class="line">    h := <span class="string">"hello"</span></span><br><span class="line">    fmt.Println(mutate([]<span class="keyword">rune</span>(h)))</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><a href="https://play.golang.org/p/GL1cm17IP1" target="_blank" rel="noopener">在线运行程序</a></p>
+<p>在上面程序的第 7 行，<code>mutate</code> 函数接收一个 rune 切片参数，它将切片的第一个元素修改为 <code>&#39;a&#39;</code>，然后将 rune 切片转化为字符串，并返回该字符串。程序的第 13 行调用了该函数。我们把 <code>h</code> 转化为一个 rune 切片，并传递给了 <code>mutate</code>。这个程序输出 <code>aello</code>。</p>
+<p>我已经在 github 上创建了一个程序，里面包含所有我们讨论过的内容。你可以在这<a href="https://github.com/golangbot/stringsexplained" target="_blank" rel="noopener">下载</a>它。</p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+       
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Go/" rel="tag"><i class="fa fa-tag"></i> Go</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/06/13/2018-06-13-go-12-function-variable-parameter/" rel="next" title="Golang tutorial series - 12.可变参数函数">
+                <i class="fa fa-chevron-left"></i> Golang tutorial series - 12.可变参数函数
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/06/13/2018-06-13-go-13-map/" rel="prev" title="Golang tutorial series - 13.Map">
+                Golang tutorial series - 13.Map <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/header.jpg" alt="讨人厌的团子蜀">
+            
+              <p class="site-author-name" itemprop="name">讨人厌的团子蜀</p>
+              <p class="site-description motion-element" itemprop="description">构成生命的主要成分，并非事实和事件，而是思想。</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives">
+                
+                    <span class="site-state-item-count">57</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">12</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">14</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/mrfantuan" title="GitHub &rarr; https://github.com/mrfantuan" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i></a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                  
+                    
+                  
+                  <a href="mailto:mrfantuan@hotmail.com" title="E-Mail &rarr; mailto:mrfantuan@hotmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i></a>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#什么是字符串？"><span class="nav-number">1.</span> <span class="nav-text">什么是字符串？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#单独获取字符串的每一个字节"><span class="nav-number">2.</span> <span class="nav-text">单独获取字符串的每一个字节</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#rune"><span class="nav-number">3.</span> <span class="nav-text">rune</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#字符串的-for-range-循环"><span class="nav-number">4.</span> <span class="nav-text">字符串的 for range 循环</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#用字节切片构造字符串"><span class="nav-number">5.</span> <span class="nav-text">用字节切片构造字符串</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#用-rune-切片构造字符串"><span class="nav-number">6.</span> <span class="nav-text">用 rune 切片构造字符串</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#字符串的长度"><span class="nav-number">7.</span> <span class="nav-text">字符串的长度</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#字符串是不可变的"><span class="nav-number">8.</span> <span class="nav-text">字符串是不可变的</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2015 – <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">讨人厌的团子蜀</span>
+
+  
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+
+  
+    <span class="site-pv" title="总访问量">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+    </span>
+  
+</div>
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//tajs.qq.com/stats?sId=66125392";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+	
+    
+
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+    
+      
+  
+  <script type="text/javascript" color="95,158,160" opacity="0.5" zindex="-1" count="99" src="/lib/canvas-nest/canvas-nest-nomobile.min.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.5.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.5.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=6.5.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=6.5.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.5.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.5.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.5.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+  
+  <script src="/lib/pangu/dist/pangu.min.js?v=3.3"></script>
+  <script type="text/javascript">pangu.spacingPage();</script>
+
+
+  
+
+  
+
+  
+
+  
+  <style>
+    .copy-btn {
+      display: inline-block;
+      padding: 6px 12px;
+      font-size: 13px;
+      font-weight: 700;
+      line-height: 20px;
+      color: #333;
+      white-space: nowrap;
+      vertical-align: middle;
+      cursor: pointer;
+      background-color: #eee;
+      background-image: linear-gradient(#fcfcfc, #eee);
+      border: 1px solid #d5d5d5;
+      border-radius: 3px;
+      user-select: none;
+      outline: 0;
+    }
+
+    .highlight-wrap .copy-btn {
+      transition: opacity .3s ease-in-out;
+      opacity: 0;
+      padding: 2px 6px;
+      position: absolute;
+      right: 4px;
+      top: 8px;
+    }
+
+    .highlight-wrap:hover .copy-btn,
+    .highlight-wrap .copy-btn:focus {
+      opacity: 1
+    }
+
+    .highlight-wrap {
+      position: relative;
+    }
+  </style>
+  <script>
+    $('.highlight').each(function (i, e) {
+      var $wrap = $('<div>').addClass('highlight-wrap')
+      $(e).after($wrap)
+      $wrap.append($('<button>').addClass('copy-btn').append('复制').on('click', function (e) {
+        var code = $(this).parent().find('.code').find('.line').map(function (i, e) {
+          return $(e).text()
+        }).toArray().join('\n')
+        var ta = document.createElement('textarea')
+        document.body.appendChild(ta)
+        ta.style.position = 'absolute'
+        ta.style.top = '0px'
+        ta.style.left = '0px'
+        ta.value = code
+        ta.select()
+        ta.focus()
+        var result = document.execCommand('copy')
+        document.body.removeChild(ta)
+        
+          if(result)$(this).text('复制成功')
+          else $(this).text('复制失败')
+        
+        $(this).blur()
+      })).on('mouseleave', function (e) {
+        var $b = $(this).find('.copy-btn')
+        setTimeout(function () {
+          $b.text('复制')
+        }, 300)
+      }).append(e)
+    })
+  </script>
+
+
+  
+
+</body>
+</html>

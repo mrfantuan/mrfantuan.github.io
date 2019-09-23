@@ -1,0 +1,1144 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=6.5.0" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.5.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.5.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.5.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.5.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '6.5.0',
+    sidebar: {"position":"left","display":"always","offset":12,"b2t":false,"scrollpercent":true,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":true,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="前言这篇文章是在学习MarkDown是做的笔记，使用过之后，还是非常推荐文档相关的工作者使用MarkDown来编辑，非常高效且不用拘泥于排版布局之类的问题。 1.粗体和斜体1.1 code12341. *斜体* 或者 _斜体_2. **粗体**3. ***粗体斜体***4. ~~删除线~~ 1.2 demo 斜体 或者 _斜体_ 粗体 粗体斜体 删除线  2.分级标题2.1 code123456#">
+<meta name="keywords" content="MarkDown">
+<meta property="og:type" content="article">
+<meta property="og:title" content="markdown 语法手册">
+<meta property="og:url" content="http://yoursite.com/2017/05/01/2017-05-01-markdown-syntax/index.html">
+<meta property="og:site_name" content="Etribe">
+<meta property="og:description" content="前言这篇文章是在学习MarkDown是做的笔记，使用过之后，还是非常推荐文档相关的工作者使用MarkDown来编辑，非常高效且不用拘泥于排版布局之类的问题。 1.粗体和斜体1.1 code12341. *斜体* 或者 _斜体_2. **粗体**3. ***粗体斜体***4. ~~删除线~~ 1.2 demo 斜体 或者 _斜体_ 粗体 粗体斜体 删除线  2.分级标题2.1 code123456#">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://yoursite.com/images/markdown-syntax-7.1.1.gif">
+<meta property="og:image" content="http://yoursite.com/images/markdown-syntax-7.1.1.gif">
+<meta property="og:updated_time" content="2019-09-23T03:22:39.351Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="markdown 语法手册">
+<meta name="twitter:description" content="前言这篇文章是在学习MarkDown是做的笔记，使用过之后，还是非常推荐文档相关的工作者使用MarkDown来编辑，非常高效且不用拘泥于排版布局之类的问题。 1.粗体和斜体1.1 code12341. *斜体* 或者 _斜体_2. **粗体**3. ***粗体斜体***4. ~~删除线~~ 1.2 demo 斜体 或者 _斜体_ 粗体 粗体斜体 删除线  2.分级标题2.1 code123456#">
+<meta name="twitter:image" content="http://yoursite.com/images/markdown-syntax-7.1.1.gif">
+
+
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/05/01/2017-05-01-markdown-syntax/">
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>markdown 语法手册 | Etribe</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Etribe</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">起猛了，还是没睡醒</p>
+      
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+
+    
+
+    <a href="/" rel="section">首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+
+    
+
+    <a href="/about/" rel="section">关于</a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+  
+  
+  
+  
+
+  
+
+    <a href="https://github.com/mrfantuan" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewbox="0 0 250 250" style="fill: #222; color: #fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"/><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"/><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"/></svg></a>
+
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/05/01/2017-05-01-markdown-syntax/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="讨人厌的团子蜀">
+      <meta itemprop="description" content="构成生命的主要成分，并非事实和事件，而是思想。">
+      <meta itemprop="image" content="/images/header.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Etribe">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">markdown 语法手册
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2017-05-01 20:00:00" itemprop="dateCreated datePublished" datetime="2017-05-01T20:00:00+08:00">2017-05-01</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-09-23 11:22:39" itemprop="dateModified" datetime="2019-09-23T11:22:39+08:00">2019-09-23</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/MarkDown/" itemprop="url" rel="index"><span itemprop="name">MarkDown</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="post-meta-item-icon">
+            <i class="fa fa-eye"></i>
+             阅读次数： 
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>这篇文章是在学习MarkDown是做的笔记，使用过之后，还是非常推荐文档相关的工作者使用MarkDown来编辑，非常高效且不用拘泥于排版布局之类的问题。</p>
+<h1 id="1-粗体和斜体"><a href="#1-粗体和斜体" class="headerlink" title="1.粗体和斜体"></a>1.粗体和斜体</h1><h2 id="1-1-code"><a href="#1-1-code" class="headerlink" title="1.1 code"></a>1.1 code</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">1. *斜体* 或者 _斜体_</span><br><span class="line">2. **粗体**</span><br><span class="line">3. ***粗体斜体***</span><br><span class="line">4. ~~删除线~~</span><br></pre></td></tr></table></figure>
+<h2 id="1-2-demo"><a href="#1-2-demo" class="headerlink" title="1.2 demo"></a>1.2 demo</h2><ol>
+<li><em>斜体</em> 或者 _斜体_</li>
+<li><strong>粗体</strong></li>
+<li><strong><em>粗体斜体</em></strong></li>
+<li><del>删除线</del></li>
+</ol>
+<h1 id="2-分级标题"><a href="#2-分级标题" class="headerlink" title="2.分级标题"></a>2.分级标题</h1><h2 id="2-1-code"><a href="#2-1-code" class="headerlink" title="2.1 code"></a>2.1 code</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"># 一级标题</span><br><span class="line">## 二级标题</span><br><span class="line">### 三级标题</span><br><span class="line">#### 四级标题</span><br><span class="line">##### 五级标题</span><br><span class="line">###### 六级标题</span><br></pre></td></tr></table></figure>
+<h2 id="2-2-demo"><a href="#2-2-demo" class="headerlink" title="2.2 demo"></a>2.2 demo</h2><h1 id="一级标题"><a href="#一级标题" class="headerlink" title="一级标题"></a>一级标题</h1><h2 id="二级标题"><a href="#二级标题" class="headerlink" title="二级标题"></a>二级标题</h2><h3 id="三级标题"><a href="#三级标题" class="headerlink" title="三级标题"></a>三级标题</h3><h4 id="四级标题"><a href="#四级标题" class="headerlink" title="四级标题"></a>四级标题</h4><h5 id="五级标题"><a href="#五级标题" class="headerlink" title="五级标题"></a>五级标题</h5><h6 id="六级标题"><a href="#六级标题" class="headerlink" title="六级标题"></a>六级标题</h6><h1 id="3-超链接"><a href="#3-超链接" class="headerlink" title="3.超链接"></a>3.超链接</h1><p>MarkDown支持两种形式的连接语法：行内式 和 参考式 两种形式，行内式一般用的会多一些。</p>
+<h2 id="3-1-行内式"><a href="#3-1-行内式" class="headerlink" title="3.1 行内式"></a>3.1 行内式</h2><h3 id="3-1-1-syntax"><a href="#3-1-1-syntax" class="headerlink" title="3.1.1 syntax"></a>3.1.1 syntax</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[链接文字](链接地址 &quot;链接标题&quot;)</span><br></pre></td></tr></table></figure>
+<h3 id="3-1-2-code"><a href="#3-1-2-code" class="headerlink" title="3.1.2 code"></a>3.1.2 code</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">欢迎来到 [讨人厌的团子蜀GitBlog](http://mrfantuan.github.io)</span><br><span class="line">欢迎来到 [讨人厌的团子蜀GitBlog](http://mrfantuan.github.io &quot;讨人厌的团子蜀&quot;)</span><br></pre></td></tr></table></figure>
+<h3 id="3-1-3-demo"><a href="#3-1-3-demo" class="headerlink" title="3.1.3 demo"></a>3.1.3 demo</h3><p>欢迎来到 <a href="http://mrfantuan.github.io" target="_blank" rel="noopener">讨人厌的团子蜀GitBlog</a></p>
+<p>欢迎来到 <a href="http://mrfantuan.github.io" title="讨人厌的团子蜀" target="_blank" rel="noopener">讨人厌的团子蜀GitBlog</a></p>
+<h2 id="3-2-参考式"><a href="#3-2-参考式" class="headerlink" title="3.2 参考式"></a>3.2 参考式</h2><p>参考式超链接一般用在学术论文上面，或者另一种情况，如果某一个链接在文章中多处使用，那么使用引用 的方式创建链接将非常好，它可以让你对链接进行统一的管理。</p>
+<h2 id="3-2-1-synatax"><a href="#3-2-1-synatax" class="headerlink" title="3.2.1 synatax"></a>3.2.1 synatax</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[链接文字][链接标记]</span><br><span class="line">[链接标记]:链接地址 “链接标题”</span><br></pre></td></tr></table></figure>
+<h2 id="3-2-2-code"><a href="#3-2-2-code" class="headerlink" title="3.2.2 code"></a>3.2.2 code</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">我经常去的网站 [Google][1] \ [Baidu][2] \ [讨人厌的团子蜀GitBlog][3]</span><br><span class="line"></span><br><span class="line">[1]:http://www.google.com &quot;Google&quot;</span><br><span class="line">[2]:http://www.baidu.com &quot;Baidu&quot;</span><br><span class="line">[3]:http://mrfantuan.github.io &quot;讨人厌的团子蜀GitBlog&quot;</span><br></pre></td></tr></table></figure>
+<h2 id="3-2-3-demo"><a href="#3-2-3-demo" class="headerlink" title="3.2.3 demo"></a>3.2.3 demo</h2><p>我经常去的网站 <a href="http://www.google.com" title="Google" target="_blank" rel="noopener">Google</a> \ <a href="http://www.baidu.com" title="Baidu" target="_blank" rel="noopener">Baidu</a> \ <a href="http://mrfantuan.github.io" title="讨人厌的团子蜀GitBlog" target="_blank" rel="noopener">讨人厌的团子蜀GitBlog</a></p>
+<h2 id="3-3-自动链接"><a href="#3-3-自动链接" class="headerlink" title="3.3 自动链接"></a>3.3 自动链接</h2><p>Markdown 支持以比较简短的自动链接形式来处理网址和电子邮件信箱。</p>
+<h3 id="3-3-1-synatax"><a href="#3-3-1-synatax" class="headerlink" title="3.3.1 synatax"></a>3.3.1 synatax</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;http://www.baidu.com&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="3-3-2-code"><a href="#3-3-2-code" class="headerlink" title="3.3.2 code"></a>3.3.2 code</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;http://www.baidu.com&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="3-3-3-demo"><a href="#3-3-3-demo" class="headerlink" title="3.3.3 demo"></a>3.3.3 demo</h3><p><a href="http://www.baidu.com" target="_blank" rel="noopener">http://www.baidu.com</a></p>
+<p><a href="mailto:&#109;&#x72;&#102;&#97;&#110;&#x74;&#117;&#x61;&#x6e;&#x40;&#104;&#111;&#116;&#109;&#x61;&#105;&#108;&#46;&#99;&#111;&#x6d;" target="_blank" rel="noopener">&#109;&#x72;&#102;&#97;&#110;&#x74;&#117;&#x61;&#x6e;&#x40;&#104;&#111;&#116;&#109;&#x61;&#105;&#108;&#46;&#99;&#111;&#x6d;</a></p>
+<h1 id="5-列表"><a href="#5-列表" class="headerlink" title="5.列表"></a>5.列表</h1><h2 id="5-1无序列表"><a href="#5-1无序列表" class="headerlink" title="5.1无序列表"></a>5.1无序列表</h2><h3 id="5-1-1-sysnatax"><a href="#5-1-1-sysnatax" class="headerlink" title="5.1.1 sysnatax"></a>5.1.1 sysnatax</h3><p>使用 */+/- 表示无序列表</p>
+<h3 id="5-1-2-code"><a href="#5-1-2-code" class="headerlink" title="5.1.2 code"></a>5.1.2 code</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">- 无序列表A</span><br><span class="line">- 无序列表B</span><br><span class="line">- 无序列表C</span><br></pre></td></tr></table></figure>
+<h3 id="5-1-3-demo"><a href="#5-1-3-demo" class="headerlink" title="5.1.3 demo"></a>5.1.3 demo</h3><ul>
+<li>无序列表A</li>
+<li>无序列表B</li>
+<li>无序列表C</li>
+</ul>
+<h2 id="5-2-有序列表"><a href="#5-2-有序列表" class="headerlink" title="5.2 有序列表"></a>5.2 有序列表</h2><h3 id="5-2-1-sysnatax"><a href="#5-2-1-sysnatax" class="headerlink" title="5.2.1 sysnatax"></a>5.2.1 sysnatax</h3><p>有序列表则使用数字接着一个英文句点。</p>
+<h3 id="5-2-2-code"><a href="#5-2-2-code" class="headerlink" title="5.2.2 code"></a>5.2.2 code</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">1. 有序列表A</span><br><span class="line">2. 有序列表B</span><br><span class="line">3. 有序列表C</span><br></pre></td></tr></table></figure>
+<h3 id="5-2-3-demo"><a href="#5-2-3-demo" class="headerlink" title="5.2.3 demo"></a>5.2.3 demo</h3><ol>
+<li>有序列表A</li>
+<li>有序列表B</li>
+<li>有序列表C</li>
+</ol>
+<h2 id="5-3-定义型列表"><a href="#5-3-定义型列表" class="headerlink" title="5.3 定义型列表"></a>5.3 定义型列表</h2><h3 id="5-3-1-sysnatax"><a href="#5-3-1-sysnatax" class="headerlink" title="5.3.1 sysnatax"></a>5.3.1 sysnatax</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">header</span><br><span class="line">:   content(左侧有一个冒号和四个空格)</span><br></pre></td></tr></table></figure>
+<h3 id="5-3-2-code"><a href="#5-3-2-code" class="headerlink" title="5.3.2 code"></a>5.3.2 code</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Markdown</span><br><span class="line">:   轻量级文本标记语言</span><br><span class="line"></span><br><span class="line">code block</span><br><span class="line">:   代码块的定义</span><br><span class="line">        code(左侧8个空格)</span><br></pre></td></tr></table></figure>
+<h3 id="5-3-3-demo"><a href="#5-3-3-demo" class="headerlink" title="5.3.3 demo"></a>5.3.3 demo</h3><p>Markdown<br>:   轻量级文本标记语言</p>
+<p>code block<br>:   代码块的定义</p>
+<pre><code>code(左侧8个空格)
+</code></pre><h2 id="5-4-列表缩进"><a href="#5-4-列表缩进" class="headerlink" title="5.4 列表缩进"></a>5.4 列表缩进</h2><h3 id="5-4-1-sysnatax"><a href="#5-4-1-sysnatax" class="headerlink" title="5.4.1 sysnatax"></a>5.4.1 sysnatax</h3><p>列表项目标记通常是放在最左边，但是其实也可以缩进，最多 3 个空格，项目标记后面则一定要接着至少一个空格或制表符。</p>
+<h3 id="5-4-2-code"><a href="#5-4-2-code" class="headerlink" title="5.4.2 code"></a>5.4.2 code</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">要让列表看起来更漂亮，你可以把内容用固定的缩进整理好。</span><br><span class="line">*   这里只是需要一段很长的话不要在意细节。这里只是需要一段很长的话不要在意细节。这里只是需要一段很长的话不要在意细节。</span><br><span class="line">*   这里只是需要一段很长的话不要在意细节。这里只是需要一段很长的话不要在意细节。这里只是需要一段很长的话不要在意细节。</span><br></pre></td></tr></table></figure>
+<h3 id="5-4-3-demo"><a href="#5-4-3-demo" class="headerlink" title="5.4.3 demo"></a>5.4.3 demo</h3><ul>
+<li>这里只是需要一段很长的话不要在意细节。这里只是需要一段很长的话不要在意细节。这里只是需要一段很长的话不要在意细节。</li>
+<li>这里只是需要一段很长的话不要在意细节。这里只是需要一段很长的话不要在意细节。这里只是需要一段很长的话不要在意细节。</li>
+</ul>
+<h2 id="5-5-包含段落的列表"><a href="#5-5-包含段落的列表" class="headerlink" title="5.5  包含段落的列表"></a>5.5  包含段落的列表</h2><h3 id="5-5-1-sysnatax"><a href="#5-5-1-sysnatax" class="headerlink" title="5.5.1 sysnatax"></a>5.5.1 sysnatax</h3><p>列表项目可以包含多个段落，每个项目下的段落都必须缩进 4 个空格或是 1 个制表符。</p>
+<h3 id="5-5-2-code"><a href="#5-5-2-code" class="headerlink" title="5.5.2 code"></a>5.5.2 code</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">*   这里只是需要一段很长的话不要在意细节。这里只是需要一段很长的话不要在意细节。这里只是需要一段很长的话不要在意细节。</span><br><span class="line"></span><br><span class="line">    这里只是需要一段很长的话不要在意细节。这里只是需要一段很长的话不要在意细节。这里只是需要一段很长的话不要在意细节。</span><br><span class="line"></span><br><span class="line">*   这里只是需要一段很长的话不要在意细节。这里只是需要一段很长的话不要在意细节。这里只是需要一段很长的话不要在意细节。</span><br></pre></td></tr></table></figure>
+<h3 id="5-5-3-demo"><a href="#5-5-3-demo" class="headerlink" title="5.5.3 demo"></a>5.5.3 demo</h3><ul>
+<li><p>这里只是需要一段很长的话不要在意细节。这里只是需要一段很长的话不要在意细节。这里只是需要一段很长的话不要在意细节。</p>
+<p>这里只是需要一段很长的话不要在意细节。这里只是需要一段很长的话不要在意细节。这里只是需要一段很长的话不要在意细节。</p>
+</li>
+<li><p>这里只是需要一段很长的话不要在意细节。这里只是需要一段很长的话不要在意细节。这里只是需要一段很长的话不要在意细节。</p>
+</li>
+</ul>
+<h2 id="5-6-包含引用的列表"><a href="#5-6-包含引用的列表" class="headerlink" title="5.6 包含引用的列表"></a>5.6 包含引用的列表</h2><h3 id="5-6-1-sysnatax"><a href="#5-6-1-sysnatax" class="headerlink" title="5.6.1 sysnatax"></a>5.6.1 sysnatax</h3><p>如果要在列表项目内放进引用，那 &gt; 就需要缩进。</p>
+<h3 id="5-6-2-code"><a href="#5-6-2-code" class="headerlink" title="5.6.2 code"></a>5.6.2 code</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">*   阅读的方法:</span><br><span class="line">    &gt; 打开书本。</span><br><span class="line">    &gt; 打开电灯。</span><br></pre></td></tr></table></figure>
+<h3 id="5-6-3-demo"><a href="#5-6-3-demo" class="headerlink" title="5.6.3 demo"></a>5.6.3 demo</h3><ul>
+<li>阅读的方法:<blockquote>
+<p>打开书本。<br>打开电灯。</p>
+</blockquote>
+</li>
+</ul>
+<h1 id="6-引用"><a href="#6-引用" class="headerlink" title="6.引用"></a>6.引用</h1><h2 id="6-1-引用"><a href="#6-1-引用" class="headerlink" title="6.1 引用"></a>6.1 引用</h2><h3 id="6-1-1-sysnatax"><a href="#6-1-1-sysnatax" class="headerlink" title="6.1.1 sysnatax"></a>6.1.1 sysnatax</h3><p>引用需要在被引用的文本前加上&gt;符号。</p>
+<h2 id="6-1-2-code"><a href="#6-1-2-code" class="headerlink" title="6.1.2 code"></a>6.1.2 code</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&gt; 这是一个有两段文字的引用,</span><br><span class="line">&gt; 无意义的占行文字1.</span><br><span class="line">&gt; 无意义的占行文字2.</span><br><span class="line">&gt;</span><br><span class="line">&gt; 无意义的占行文字3.</span><br><span class="line">&gt; 无意义的占行文字4.</span><br></pre></td></tr></table></figure>
+<h2 id="6-1-3-demo"><a href="#6-1-3-demo" class="headerlink" title="6.1.3 demo"></a>6.1.3 demo</h2><blockquote>
+<p>这是一个有两段文字的引用,<br>无意义的占行文字1.<br>无意义的占行文字2.</p>
+<p>无意义的占行文字3.<br>无意义的占行文字4.</p>
+</blockquote>
+<h2 id="6-2-引用的多层嵌套"><a href="#6-2-引用的多层嵌套" class="headerlink" title="6.2 引用的多层嵌套"></a>6.2 引用的多层嵌套</h2><h3 id="6-2-1-sysnatax"><a href="#6-2-1-sysnatax" class="headerlink" title="6.2.1 sysnatax"></a>6.2.1 sysnatax</h3><p>区块引用可以嵌套(例如：引用内的引用)，只要根据层次加上不同数量的 &gt;</p>
+<h3 id="6-2-2-code"><a href="#6-2-2-code" class="headerlink" title="6.2.2 code"></a>6.2.2 code</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; 请问 Markdwon 怎么用？ - 路人A</span><br><span class="line">&gt;&gt; 自己看教程！ - 路人B</span><br><span class="line">&gt; 教程在哪？ - 路人C</span><br></pre></td></tr></table></figure>
+<h3 id="6-2-3-demo"><a href="#6-2-3-demo" class="headerlink" title="6.2.3 demo"></a>6.2.3 demo</h3><blockquote>
+<blockquote>
+<blockquote>
+<p>请问 Markdwon 怎么用？ - 路人A<br>自己看教程！ - 路人B<br>教程在哪？ - 路人C</p>
+</blockquote>
+</blockquote>
+</blockquote>
+<h2 id="6-3-引用其他要素"><a href="#6-3-引用其他要素" class="headerlink" title="6.3 引用其他要素"></a>6.3 引用其他要素</h2><h3 id="6-3-1-sysnatax"><a href="#6-3-1-sysnatax" class="headerlink" title="6.3.1 sysnatax"></a>6.3.1 sysnatax</h3><p>引用的区块内也可以使用其他的 Markdown 语法，包括标题、列表、代码区块等。</p>
+<h3 id="6-3-2-code"><a href="#6-3-2-code" class="headerlink" title="6.3.2 code"></a>6.3.2 code</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&gt; 1.   这是第一行列表项。</span><br><span class="line">&gt; 2.   这是第二行列表项。</span><br><span class="line">&gt;</span><br><span class="line">&gt; 给出一些例子代码：</span><br><span class="line">&gt;</span><br><span class="line">&gt;     return shell_exec(&quot;echo $input | $markdown_script&quot;);</span><br></pre></td></tr></table></figure>
+<h3 id="6-3-3-demo"><a href="#6-3-3-demo" class="headerlink" title="6.3.3 demo"></a>6.3.3 demo</h3><blockquote>
+<ol>
+<li>这是第一行列表项。</li>
+<li>这是第二行列表项。</li>
+</ol>
+<p>给出一些例子代码：</p>
+<pre><code>return shell_exec(&quot;echo $input | $markdown_script&quot;);
+</code></pre></blockquote>
+<h1 id="7-插入图像"><a href="#7-插入图像" class="headerlink" title="7.插入图像"></a>7.插入图像</h1><p>图片的创建方式与超链接相似，而且和超链接一样也有两种写法，行内式和参考式写法。<br>语法中图片Alt的意思是如果图片因为某些原因不能显示，就用定义的图片Alt文字来代替图片。 图片Title则和链接中的Title一样，表示鼠标悬停与图片上时出现的文字。 Alt 和 Title 都不是必须的，可以省略，但建议写上。</p>
+<h2 id="7-1-行内式"><a href="#7-1-行内式" class="headerlink" title="7.1 行内式"></a>7.1 行内式</h2><h3 id="7-1-1-sysnatax"><a href="#7-1-1-sysnatax" class="headerlink" title="7.1.1 sysnatax"></a>7.1.1 sysnatax</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">![图片Alt](图片地址 &quot;图片Title&quot;)</span><br></pre></td></tr></table></figure>
+<h3 id="7-1-2-code"><a href="#7-1-2-code" class="headerlink" title="7.1.2 code"></a>7.1.2 code</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">![image](/images/markdown-syntax-7.1.1.gif &quot;吃草的猫&quot;)</span><br></pre></td></tr></table></figure>
+<h3 id="7-1-3-demo"><a href="#7-1-3-demo" class="headerlink" title="7.1.3 demo"></a>7.1.3 demo</h3><p><img src="/images/markdown-syntax-7.1.1.gif" alt="image" title="吃草的猫"></p>
+<h2 id="7-2-参考式"><a href="#7-2-参考式" class="headerlink" title="7.2 参考式"></a>7.2 参考式</h2><h3 id="7-2-1-sysnatax"><a href="#7-2-1-sysnatax" class="headerlink" title="7.2.1 sysnatax"></a>7.2.1 sysnatax</h3><p>在文档要插入图片的地方写![图片Alt][标记]</p>
+<p>在文档的最后写上[标记]:图片地址 “Title”</p>
+<h3 id="7-2-2-code"><a href="#7-2-2-code" class="headerlink" title="7.2.2 code"></a>7.2.2 code</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">![吃草的猫][grasscat]</span><br><span class="line"></span><br><span class="line">[grasscat]: /images/markdown-syntax-7.1.1.gif &quot;吃草的猫&quot;</span><br></pre></td></tr></table></figure>
+<h3 id="7-2-3-demo"><a href="#7-2-3-demo" class="headerlink" title="7.2.3 demo"></a>7.2.3 demo</h3><p><img src="/images/markdown-syntax-7.1.1.gif" alt="吃草的猫" title="吃草的猫"></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">@requires_authorization</span><br><span class="line">def somefunc(param1='', param2=0):</span><br><span class="line">    <span class="string">'''</span>A docstring<span class="string">'''</span></span><br><span class="line">    if param1 &gt; param2: # interesting</span><br><span class="line">        print 'Greater'</span><br><span class="line">    <span class="keyword">return</span> (param2 - param1 + <span class="number">1</span>) <span class="keyword">or</span> None</span><br><span class="line"></span><br><span class="line">class SomeClass:</span><br><span class="line">    pass</span><br><span class="line"></span><br><span class="line">&gt;&gt;&gt; message = <span class="string">'''</span>interpreter</span><br><span class="line">... prompt<span class="string">'''</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">* nth element in the fibonacci series.</span></span><br><span class="line"><span class="comment">* @param n &gt;= 0</span></span><br><span class="line"><span class="comment">* @return the nth element, &gt;= 0.</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">fib</span>(<span class="params">n</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> a = <span class="number">1</span>, b = <span class="number">1</span>;</span><br><span class="line">  <span class="keyword">var</span> tmp;</span><br><span class="line">  <span class="keyword">while</span> (--n &gt;= <span class="number">0</span>) &#123;</span><br><span class="line">    tmp = a;</span><br><span class="line">    a += b;</span><br><span class="line">    b = tmp;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> a;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">document</span>.write(fib(<span class="number">10</span>));</span><br></pre></td></tr></table></figure>
+<div id="flowchart-0" class="flow-chart"></div>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Alice-&gt;Bob: Hello Bob, how are you?</span><br><span class="line">Note right of Bob: Bob thinks</span><br><span class="line">Bob--&gt;Alice: I am good thanks!</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Title: Here is a title</span><br><span class="line">A-&gt;B: Normal line</span><br><span class="line">B--&gt;C: Dashed line</span><br><span class="line">C-&gt;&gt;D: Open arrow</span><br><span class="line">D--&gt;&gt;A: Dashed open arrow</span><br></pre></td></tr></table></figure>
+<div id="flowchart-1" class="flow-chart"></div>
+
+<p>Title: Here is a title<br>A-&gt;B: Normal line<br>B–&gt;C: Dashed line<br>C-&gt;&gt;D: Open arrow<br>D–&gt;&gt;A: Dashed open arrow</p>
+<div id="flowchart-2" class="flow-chart"></div>
+
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"Hello world\n"</span> );</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><script src="https://cdnjs.cloudflare.com/ajax/libs/raphael/2.2.7/raphael.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/flowchart/1.6.5/flowchart.min.js"></script><textarea id="flowchart-0-code" style="display: none">st=>start: Start:>https://www.zybuluo.com
+io=>inputoutput: verification
+op=>operation: Your Operation
+cond=>condition: Yes or No?
+sub=>subroutine: Your Subroutine
+e=>end
+
+st->io->op->cond
+cond(yes)->e
+cond(no)->sub->io</textarea><textarea id="flowchart-0-options" style="display: none">{"scale":1,"line-width":2,"line-length":50,"text-margin":10,"font-size":12}</textarea><script>  var code = document.getElementById("flowchart-0-code").value;  var options = JSON.parse(decodeURIComponent(document.getElementById("flowchart-0-options").value));  var diagram = flowchart.parse(code);  diagram.drawSVG("flowchart-0", options);</script><textarea id="flowchart-1-code" style="display: none">st=>start: Start
+e=>end: End
+op1=>operation: My Operation
+sub1=>subroutine: My Subroutine
+cond=>condition: Yes or No?
+io=>inputoutput: catch something...
+st->op1->cond
+cond(yes)->io->e
+cond(no)->sub1(right)->op1</textarea><textarea id="flowchart-1-options" style="display: none">{"scale":1,"line-width":2,"line-length":50,"text-margin":10,"font-size":12}</textarea><script>  var code = document.getElementById("flowchart-1-code").value;  var options = JSON.parse(decodeURIComponent(document.getElementById("flowchart-1-options").value));  var diagram = flowchart.parse(code);  diagram.drawSVG("flowchart-1", options);</script><textarea id="flowchart-2-code" style="display: none">st=>start: Start|past:>http://www.google.com[blank]
+e=>end: End:>http://www.google.com
+op1=>operation: get_hotel_ids|past
+op2=>operation: get_proxy|current
+sub1=>subroutine: get_proxy|current
+op3=>operation: save_comment|current
+op4=>operation: set_sentiment|current
+op5=>operation: set_record|current
+
+cond1=>condition: ids_remain空?
+cond2=>condition: proxy_list空?
+cond3=>condition: ids_got空?
+cond4=>condition: 爬取成功??
+cond5=>condition: ids_remain空?
+
+io1=>inputoutput: ids-remain
+io2=>inputoutput: proxy_list
+io3=>inputoutput: ids-got
+
+st->op1(right)->io1->cond1
+cond1(yes)->sub1->io2->cond2
+cond2(no)->op3
+cond2(yes)->sub1
+cond1(no)->op3->cond4
+cond4(yes)->io3->cond3
+cond4(no)->io1
+cond3(no)->op4
+cond3(yes, right)->cond5
+cond5(yes)->op5
+cond5(no)->cond3
+op5->e</textarea><textarea id="flowchart-2-options" style="display: none">{"scale":1,"line-width":2,"line-length":50,"text-margin":10,"font-size":12}</textarea><script>  var code = document.getElementById("flowchart-2-code").value;  var options = JSON.parse(decodeURIComponent(document.getElementById("flowchart-2-options").value));  var diagram = flowchart.parse(code);  diagram.drawSVG("flowchart-2", options);</script></p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+       
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/MarkDown/" rel="tag"><i class="fa fa-tag"></i> MarkDown</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/05/01/2017-05-01-what-is-github/" rel="next" title="什么是GitHub">
+                <i class="fa fa-chevron-left"></i> 什么是GitHub
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/05/11/2017-05-01-redis-install/" rel="prev" title="redis 安装">
+                redis 安装 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/header.jpg" alt="讨人厌的团子蜀">
+            
+              <p class="site-author-name" itemprop="name">讨人厌的团子蜀</p>
+              <p class="site-description motion-element" itemprop="description">构成生命的主要成分，并非事实和事件，而是思想。</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives">
+                
+                    <span class="site-state-item-count">57</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">12</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">14</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/mrfantuan" title="GitHub &rarr; https://github.com/mrfantuan" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i></a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                  
+                    
+                  
+                  <a href="mailto:mrfantuan@hotmail.com" title="E-Mail &rarr; mailto:mrfantuan@hotmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i></a>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#1-粗体和斜体"><span class="nav-number">2.</span> <span class="nav-text">1.粗体和斜体</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-1-code"><span class="nav-number">2.1.</span> <span class="nav-text">1.1 code</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-2-demo"><span class="nav-number">2.2.</span> <span class="nav-text">1.2 demo</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-分级标题"><span class="nav-number">3.</span> <span class="nav-text">2.分级标题</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#2-1-code"><span class="nav-number">3.1.</span> <span class="nav-text">2.1 code</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-2-demo"><span class="nav-number">3.2.</span> <span class="nav-text">2.2 demo</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#一级标题"><span class="nav-number">4.</span> <span class="nav-text">一级标题</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#二级标题"><span class="nav-number">4.1.</span> <span class="nav-text">二级标题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#三级标题"><span class="nav-number">4.1.1.</span> <span class="nav-text">三级标题</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#四级标题"><span class="nav-number">4.1.1.1.</span> <span class="nav-text">四级标题</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#五级标题"><span class="nav-number">4.1.1.1.1.</span> <span class="nav-text">五级标题</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#六级标题"><span class="nav-number">4.1.1.1.1.1.</span> <span class="nav-text">六级标题</span></a></li></ol></li></ol></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-超链接"><span class="nav-number">5.</span> <span class="nav-text">3.超链接</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#3-1-行内式"><span class="nav-number">5.1.</span> <span class="nav-text">3.1 行内式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-1-syntax"><span class="nav-number">5.1.1.</span> <span class="nav-text">3.1.1 syntax</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-2-code"><span class="nav-number">5.1.2.</span> <span class="nav-text">3.1.2 code</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-3-demo"><span class="nav-number">5.1.3.</span> <span class="nav-text">3.1.3 demo</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-2-参考式"><span class="nav-number">5.2.</span> <span class="nav-text">3.2 参考式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-2-1-synatax"><span class="nav-number">5.3.</span> <span class="nav-text">3.2.1 synatax</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-2-2-code"><span class="nav-number">5.4.</span> <span class="nav-text">3.2.2 code</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-2-3-demo"><span class="nav-number">5.5.</span> <span class="nav-text">3.2.3 demo</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-3-自动链接"><span class="nav-number">5.6.</span> <span class="nav-text">3.3 自动链接</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-3-1-synatax"><span class="nav-number">5.6.1.</span> <span class="nav-text">3.3.1 synatax</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-3-2-code"><span class="nav-number">5.6.2.</span> <span class="nav-text">3.3.2 code</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-3-3-demo"><span class="nav-number">5.6.3.</span> <span class="nav-text">3.3.3 demo</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#5-列表"><span class="nav-number">6.</span> <span class="nav-text">5.列表</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#5-1无序列表"><span class="nav-number">6.1.</span> <span class="nav-text">5.1无序列表</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#5-1-1-sysnatax"><span class="nav-number">6.1.1.</span> <span class="nav-text">5.1.1 sysnatax</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-1-2-code"><span class="nav-number">6.1.2.</span> <span class="nav-text">5.1.2 code</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-1-3-demo"><span class="nav-number">6.1.3.</span> <span class="nav-text">5.1.3 demo</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-2-有序列表"><span class="nav-number">6.2.</span> <span class="nav-text">5.2 有序列表</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#5-2-1-sysnatax"><span class="nav-number">6.2.1.</span> <span class="nav-text">5.2.1 sysnatax</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-2-2-code"><span class="nav-number">6.2.2.</span> <span class="nav-text">5.2.2 code</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-2-3-demo"><span class="nav-number">6.2.3.</span> <span class="nav-text">5.2.3 demo</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-3-定义型列表"><span class="nav-number">6.3.</span> <span class="nav-text">5.3 定义型列表</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#5-3-1-sysnatax"><span class="nav-number">6.3.1.</span> <span class="nav-text">5.3.1 sysnatax</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-3-2-code"><span class="nav-number">6.3.2.</span> <span class="nav-text">5.3.2 code</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-3-3-demo"><span class="nav-number">6.3.3.</span> <span class="nav-text">5.3.3 demo</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-4-列表缩进"><span class="nav-number">6.4.</span> <span class="nav-text">5.4 列表缩进</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#5-4-1-sysnatax"><span class="nav-number">6.4.1.</span> <span class="nav-text">5.4.1 sysnatax</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-4-2-code"><span class="nav-number">6.4.2.</span> <span class="nav-text">5.4.2 code</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-4-3-demo"><span class="nav-number">6.4.3.</span> <span class="nav-text">5.4.3 demo</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-5-包含段落的列表"><span class="nav-number">6.5.</span> <span class="nav-text">5.5  包含段落的列表</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#5-5-1-sysnatax"><span class="nav-number">6.5.1.</span> <span class="nav-text">5.5.1 sysnatax</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-5-2-code"><span class="nav-number">6.5.2.</span> <span class="nav-text">5.5.2 code</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-5-3-demo"><span class="nav-number">6.5.3.</span> <span class="nav-text">5.5.3 demo</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-6-包含引用的列表"><span class="nav-number">6.6.</span> <span class="nav-text">5.6 包含引用的列表</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#5-6-1-sysnatax"><span class="nav-number">6.6.1.</span> <span class="nav-text">5.6.1 sysnatax</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-6-2-code"><span class="nav-number">6.6.2.</span> <span class="nav-text">5.6.2 code</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-6-3-demo"><span class="nav-number">6.6.3.</span> <span class="nav-text">5.6.3 demo</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#6-引用"><span class="nav-number">7.</span> <span class="nav-text">6.引用</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#6-1-引用"><span class="nav-number">7.1.</span> <span class="nav-text">6.1 引用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#6-1-1-sysnatax"><span class="nav-number">7.1.1.</span> <span class="nav-text">6.1.1 sysnatax</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-1-2-code"><span class="nav-number">7.2.</span> <span class="nav-text">6.1.2 code</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-1-3-demo"><span class="nav-number">7.3.</span> <span class="nav-text">6.1.3 demo</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-2-引用的多层嵌套"><span class="nav-number">7.4.</span> <span class="nav-text">6.2 引用的多层嵌套</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#6-2-1-sysnatax"><span class="nav-number">7.4.1.</span> <span class="nav-text">6.2.1 sysnatax</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-2-2-code"><span class="nav-number">7.4.2.</span> <span class="nav-text">6.2.2 code</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-2-3-demo"><span class="nav-number">7.4.3.</span> <span class="nav-text">6.2.3 demo</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-3-引用其他要素"><span class="nav-number">7.5.</span> <span class="nav-text">6.3 引用其他要素</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#6-3-1-sysnatax"><span class="nav-number">7.5.1.</span> <span class="nav-text">6.3.1 sysnatax</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-3-2-code"><span class="nav-number">7.5.2.</span> <span class="nav-text">6.3.2 code</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-3-3-demo"><span class="nav-number">7.5.3.</span> <span class="nav-text">6.3.3 demo</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#7-插入图像"><span class="nav-number">8.</span> <span class="nav-text">7.插入图像</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#7-1-行内式"><span class="nav-number">8.1.</span> <span class="nav-text">7.1 行内式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#7-1-1-sysnatax"><span class="nav-number">8.1.1.</span> <span class="nav-text">7.1.1 sysnatax</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-1-2-code"><span class="nav-number">8.1.2.</span> <span class="nav-text">7.1.2 code</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-1-3-demo"><span class="nav-number">8.1.3.</span> <span class="nav-text">7.1.3 demo</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-2-参考式"><span class="nav-number">8.2.</span> <span class="nav-text">7.2 参考式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#7-2-1-sysnatax"><span class="nav-number">8.2.1.</span> <span class="nav-text">7.2.1 sysnatax</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-2-2-code"><span class="nav-number">8.2.2.</span> <span class="nav-text">7.2.2 code</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-2-3-demo"><span class="nav-number">8.2.3.</span> <span class="nav-text">7.2.3 demo</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2015 – <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">讨人厌的团子蜀</span>
+
+  
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+
+  
+    <span class="site-pv" title="总访问量">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+    </span>
+  
+</div>
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//tajs.qq.com/stats?sId=66125392";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+	
+    
+
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+    
+      
+  
+  <script type="text/javascript" color="95,158,160" opacity="0.5" zindex="-1" count="99" src="/lib/canvas-nest/canvas-nest-nomobile.min.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.5.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.5.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=6.5.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=6.5.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.5.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.5.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.5.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+  
+  <script src="/lib/pangu/dist/pangu.min.js?v=3.3"></script>
+  <script type="text/javascript">pangu.spacingPage();</script>
+
+
+  
+
+  
+
+  
+
+  
+  <style>
+    .copy-btn {
+      display: inline-block;
+      padding: 6px 12px;
+      font-size: 13px;
+      font-weight: 700;
+      line-height: 20px;
+      color: #333;
+      white-space: nowrap;
+      vertical-align: middle;
+      cursor: pointer;
+      background-color: #eee;
+      background-image: linear-gradient(#fcfcfc, #eee);
+      border: 1px solid #d5d5d5;
+      border-radius: 3px;
+      user-select: none;
+      outline: 0;
+    }
+
+    .highlight-wrap .copy-btn {
+      transition: opacity .3s ease-in-out;
+      opacity: 0;
+      padding: 2px 6px;
+      position: absolute;
+      right: 4px;
+      top: 8px;
+    }
+
+    .highlight-wrap:hover .copy-btn,
+    .highlight-wrap .copy-btn:focus {
+      opacity: 1
+    }
+
+    .highlight-wrap {
+      position: relative;
+    }
+  </style>
+  <script>
+    $('.highlight').each(function (i, e) {
+      var $wrap = $('<div>').addClass('highlight-wrap')
+      $(e).after($wrap)
+      $wrap.append($('<button>').addClass('copy-btn').append('复制').on('click', function (e) {
+        var code = $(this).parent().find('.code').find('.line').map(function (i, e) {
+          return $(e).text()
+        }).toArray().join('\n')
+        var ta = document.createElement('textarea')
+        document.body.appendChild(ta)
+        ta.style.position = 'absolute'
+        ta.style.top = '0px'
+        ta.style.left = '0px'
+        ta.value = code
+        ta.select()
+        ta.focus()
+        var result = document.execCommand('copy')
+        document.body.removeChild(ta)
+        
+          if(result)$(this).text('复制成功')
+          else $(this).text('复制失败')
+        
+        $(this).blur()
+      })).on('mouseleave', function (e) {
+        var $b = $(this).find('.copy-btn')
+        setTimeout(function () {
+          $b.text('复制')
+        }, 300)
+      }).append(e)
+    })
+  </script>
+
+
+  
+
+</body>
+</html>

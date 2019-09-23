@@ -17,22 +17,22 @@ redis64位下载地址：
 # Window环境安装
 
 1. 解压完成后，目录结构如下:
-![image](/images/redis/2-1.png "redis 2-1")
+![image](https://gitblog.oss-cn-hangzhou.aliyuncs.com/img/redis/2-1.png "redis 2-1")
 
 2. 进入文件夹修改 redis.windows.conf文件，设置maxmemory 大小:
-![image](/images/redis/2-2.png "redis 2-2")
+![image](https://gitblog.oss-cn-hangzhou.aliyuncs.com/img/redis/2-2.png "redis 2-2")
 
 3. 设置redis密码
-![image](/images/redis/2-3.png "redis 2-3")
+![image](https://gitblog.oss-cn-hangzhou.aliyuncs.com/img/redis/2-3.png "redis 2-3")
 
 4. 启动redis
 > redis-server.exe redis.windows.conf
 
-![image](/images/redis/2-4.png "redis 2-4")
+![image](https://gitblog.oss-cn-hangzhou.aliyuncs.com/img/redis/2-4.png "redis 2-4")
 
 成功后如图:
 
-![image](/images/redis/2-5.png "redis 2-5")
+![image](https://gitblog.oss-cn-hangzhou.aliyuncs.com/img/redis/2-5.png "redis 2-5")
 
 5. 将redis加入到windows的服务中
 > redis-server –-service-install redis.windows.conf -–loglevel verbose
